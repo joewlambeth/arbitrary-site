@@ -3,13 +3,17 @@
 This was an abandoned project that now only serves as a portfolio piece. Created using Flask and React frameworks.
 
 Features:
-* User/password Authentication/Authorization for different functionalities
+* User/password Authentication/Authorization for different functionalities/permissions for editting different components of the website
 * Blog posting with tags and categories
 * Gallery with (broken) thumbnail generation
 * PDF Uploading via "Bulletins"
 * Arbitrary Page creation using Admin Page, Connect, and Groups
-* CSRF protection
-
+* User management via both CLI and Admin Page
+* MySQL and Filesystem (both Google Cloud and Local) integration
+* CSRF/XSS protection
+* Form validation via regex
+* Dynamic menu generation via static templates
+* Limited testing
 
 # Setup
 
