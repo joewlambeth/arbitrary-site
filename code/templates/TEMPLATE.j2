@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<title> {% block title %}{% endblock %} - Arbitrary Site</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+{% if config['DEBUG'] == True %}
+	<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+{% else %}
+	  <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+{% endif %}
+<div class="menu" id="menu"> 
+<h1 id="menuTitle"> <a href="{{ url_for('index') }}"> SITE </a> </h1>
+	{% if session.get('username') %} <p> Signed in as {{ session.get('username') }} </p> {% endif %}
+<div class="menuIcon" onclick="displayMenuMobile();">
+	<p id="menuItemText"> MENU </p>
+	<i class="fa fa-list" id="icon"> </i>
+</div>
+<ul id="menuList">
+	<li {% if active_menu == "Home" %} class="active" {% endif %}> <a href="{{ url_for('index') }}">Home </a> </li>
+	{% for menu_item, items in navigation_bar.items() %}
+		<li class="submenu {% if active_menu == menu_item %} active {% endif %}"> <a href="{% if items['endpoint'] != False %} /{{ items['endpoint'] }} {% else %} # {% endif %}" > {{ menu_item }} </a>
+		{% if items.get('children') or items.get('func') %}
+			{% set children = items.get('children') or items['func']() %}
+			<div class="dropdown">
+				{% for sub_menu_item in children[:4] %}
+					{% set endpoint = sub_menu_item[0] if items.get('func') else create_menu_item(sub_menu_item) %}
+					{% set name = sub_menu_item[1] if items.get('func') else sub_menu_item %}
+					<a href="/{{ endpoint }}">{{ name }}</a>
+				{% endfor %} 
+				{% if children|length > 4 and items['endpoint'] %}
+					<a href="/{{ items['endpoint'] }}">More...</a>
+				{% else %}
+					{% for sub_menu_item in children[4:] %}
+						{% set endpoint = sub_menu_item[0] if items.get('func') else create_menu_item(sub_menu_item) %}
+						{% set name = sub_menu_item[1] if items.get('func') else sub_menu_item %}
+						<a href="/{{ endpoint }}">{{ name }}</a>
+					{% endfor %}
+				{% endif %}
+			</div>
+		</li>
+		{% endif %}
+		
+	{% endfor %}
+</ul>
+</div>
+<div id="popUp"></div>
+<div class="main" id="root">
+	<div class="spacer"><h1>{% block header %}{% endblock %}</h1></div>
+	{% block content %}{% endblock %}
+	<div class="spacer"></div>
+	<div class="spacer"></div>
+	<div class="foot">
+		<div>
+			{% if check_permissions("ADMIN") %}
+			<button onclick="window.location.href='{{ url_for('admin.index') }}';"> Admin Page</button>
+			{% endif %}
+			{% if check_permissions() %}
+			<button onclick="window.location.href='{{ url_for('auth.signout') }}';"> Sign Out</button>
+			{% else %}
+			<div id=loginButton></div>
+			<p>By using the Login feature, you consent to our <a href="{{ url_for('cookie_policy') }}">Cookie Policy</a></p>
+			{% endif %}
+		</div>
+		<div class="sitemap">
+		{% for menu_item, items in navigation_bar.items() %}
+			
+			<li> <a {% if items['endpoint'] %} href=" /{{ items['endpoint'] }}" {% endif %}> {{ menu_item }} </a>
+			{% if 'children' in items or 'func' in items %}
+				{% set children = items.get('children') or items['func']() %}
+				<div class= "sitemap-category">
+					{% for sub_menu_item in children %}
+						{% set endpoint = sub_menu_item[0] if items.get('func') else create_menu_item(sub_menu_item) %}
+						{% set name = sub_menu_item[1] if items.get('func') else sub_menu_item %}
+						<a href="/{{ endpoint }}">{{ name }}</a>
+					{% endfor %}
+				</div>
+			{% endif %}
+			</li>
+			
+		{% endfor %}
+		</div>
+	</div>
+	<footer>
+		<script src="{{ url_for('static', filename='main.js') }}" type="module"></script>
+	</footer>
+</div>

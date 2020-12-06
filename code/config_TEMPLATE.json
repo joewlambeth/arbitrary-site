@@ -1,0 +1,17 @@
+{
+  "SECRET_KEY": "dev",
+  "DEBUG": true,
+  "DB": {
+    "USER": null,
+    "PASS": null,
+    "URI": null,
+    "HOST": null
+  },
+  "FS": {
+    "TYPE": null,
+    "DESTINATION": null,
+    "CREDENTIALS": null
+  },
+  "NEWS_QUERY_LIMIT": 8,
+  "GALLERY_QUERY_LIMIT": 20
+}

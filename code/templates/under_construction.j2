@@ -1,0 +1,61 @@
+{% extends "TEMPLATE.j2" %}
+
+{% block title %} {% block header %} Under Construction {% endblock %} {% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>Under Construction</h1>
+<div class="blurb"><h2>This is a test blurb</h2><h3>Created by a test Person</h3></div>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis bibendum metus. Duis tempus pharetra est, ac finibus dui fermentum ut. Donec efficitur cursus elit, nec placerat ligula tempus eget. Maecenas sapien lectus, rhoncus vel nibh vel, aliquet sagittis mi. Donec vehicula vehicula massa quis mollis. Morbi interdum pretium cursus. Donec vitae aliquet augue. Suspendisse potenti. Suspendisse potenti. Mauris lacinia in dolor et blandit. Mauris volutpat bibendum suscipit.
+
+Cras vitae ante arcu. Donec consequat augue justo, maximus ultricies turpis interdum at. Donec ullamcorper, turpis ac sollicitudin bibendum, nisi mi feugiat purus, id dictum ex urna eget nisi. In non pellentesque purus. Curabitur vulputate fermentum libero vitae dignissim. Curabitur id faucibus ligula. Morbi pulvinar quis sem commodo venenatis. Fusce interdum quam ut metus vestibulum, congue dignissim odio porttitor. Mauris diam sem, suscipit a erat id, sagittis faucibus ante.
+
+Ut ac justo augue. Donec ex diam, suscipit at feugiat faucibus, dictum vel nunc. Suspendisse potenti. Duis quis neque aliquet, facilisis lorem quis, pulvinar orci. Suspendisse accumsan sed lacus vitae gravida. Sed iaculis varius vulputate. Curabitur sit amet est tincidunt tellus gravida auctor sed sed diam. Maecenas imperdiet varius consequat.
+
+Vivamus a luctus ex. Nullam pretium, nisi vitae faucibus bibendum, libero nisi cursus mauris, id commodo risus diam quis sem. Sed egestas enim convallis odio pharetra laoreet. Vestibulum vestibulum magna a diam elementum, ac volutpat nisi cursus. In varius diam eget justo ultrices, eu pellentesque est sollicitudin. Suspendisse sit amet urna ipsum. Sed rutrum commodo urna, in porta lorem scelerisque ut. Nulla nec odio vestibulum urna sagittis aliquam vitae mattis tellus. Ut efficitur viverra eros, non lobortis ipsum pretium tincidunt. Quisque non mi malesuada, sagittis ipsum sed, vehicula neque. Proin posuere sem vitae est malesuada, sit amet accumsan leo commodo. Morbi blandit, enim ut sodales hendrerit, orci ex congue justo, vitae bibendum quam leo ac ex. Phasellus consectetur est sit amet arcu placerat, quis rutrum diam molestie. Maecenas facilisis consequat semper. Suspendisse dignissim scelerisque convallis. Vestibulum suscipit ipsum fermentum, lacinia metus at, sagittis nulla.
+
+Aliquam efficitur leo eget varius mattis. Fusce sagittis lacus massa, ornare commodo diam fermentum et. Integer mattis vel ligula nec imperdiet. Sed faucibus interdum viverra. Curabitur dictum a sapien ut iaculis. Nullam hendrerit vestibulum est eu gravida. Aliquam erat volutpat. Vestibulum rhoncus pellentesque ligula sodales sagittis. Pellentesque luctus faucibus est commodo faucibus. Vivamus pharetra condimentum turpis.
+</p>
+<div class="row">
+    <div class="desc">
+        <p>This is a description, presumably for an accompanying image. I do feel that there is a better way to represent this styling, however</p>
+    </div>
+    <div class="image"><img src="{{ url_for("static", filename="main.jpg")}}"/></div>
+</div>
+<div class="row">
+    <div class="column">
+        <h3>Title!</h3>
+        <p>I'm not sure what to put for these columns...</p>
+    </div>
+</div>
+<div class="row">
+    <div class="column">
+        <h3>Hopefully it</h3>
+        <p>Works for 2 columns...</p>
+    </div>
+    <div class="column">
+        <h3>Only one</h3>
+        <p>way to find out...</p>
+    </div>
+</div>
+    <div class="row"><div class="image">><img src="{{ url_for("static", filename="main.jpg")}}"/></div> </div>
+<div class="post">
+            <div class="postHeader">
+            <h1 id="3"><a>Post</a></h1>
+                <div class="postMeta">
+                
+                <h2 class="tag">Tag</h2>
+                <h2 class="group">Group</h2>
+                <h2 class="connect">Connect</h2>
+                <button>Edit</button>
+                </div>
+                
+
+            </div>
+
+            <p>I'm just writing stuff in the news section to populate this page. The idea is that I'm trying to get a better idea of how to style this page.</p>
+            <h2>Created on 2019-09-23 01:31:40</h2>
+        </div>
+</div>
+    {% endblock %}

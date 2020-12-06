@@ -1,0 +1,11 @@
+__pycache__
+.pytest_cache
+.directory
+.idea
+/code/static/*.js
+node_modules
+/venv/
+.vscode
+cloud_sql_proxy*
+/local/*
+/code/config.json

@@ -1,0 +1,30 @@
+{
+  "name": "abritrary-website",
+  "version": "1.0.0",
+  "description": "Arbitrary Website",
+  "main": "code/static/js/app.js",
+  "private": true,
+  "scripts": {
+    "watch": "run-script-os",
+    "watch:win32": "start npx webpack --mode development --watch && start local\\watch.bat",
+    "watch:default": "npx webpack --mode development --watch & (./local/watch.sh &)",
+    "build": "npx webpack --mode production && npm run test",
+    "test": "python -m pytest --rootdir=./test"
+  },
+  "author": "Joe Lambeth",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-react": "^7.8.3",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "react-cookie": "^4.0.3",
+    "run-script-os": "^1.0.7",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {},
+  "keywords": []
+}

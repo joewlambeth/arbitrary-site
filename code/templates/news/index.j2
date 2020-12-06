@@ -1,0 +1,77 @@
+{% extends 'TEMPLATE.j2' %}
+
+{% block title %} {% block header %} News {% endblock %}{% endblock %}
+
+{% block content %}
+<div class="container" id="news">
+    <div class="newsDisplay">
+    {% if posts|length == 0 %}
+    
+        <div class="post">
+            <div class="postHeader">
+                <div class="postMeta">
+                    <h1><a>No available posts</a></h1>
+                </div>
+            </div>
+            <p>Please check again later!</p>
+        </div>
+    {% else %}
+    {% for post in posts %}
+
+        <div class="post">
+            <div class="postHeader">
+                <h1 id="{{ post.id }}"><a href="{{ url_for('news.view', id=post.id, previous=page) }}">{{ post.title }}</a></h1>
+                <div class="postMeta">
+                    {% if post.tag|length > 0 %} <h2 class="tag">{{ post.tag[0].tag }}</h2> {% elif post.group|length > 0 %}<h2 class="{{ 'group' if post.group[0].grouptype == GroupEnum.groups else 'connect' }}">{{ post.group[0].title }}</h2>{% endif %}
+                    {% if check_permissions('NEWS') %}
+                        <button onclick="window.location.href='{{ url_for('news.edit', id=post.id) }}'">Edit</button>
+                    {% endif %}
+                </div>
+                <br/>
+            </div>
+
+            {% if post.body|length > 500 %}
+                <p>{{ post.body[: post.body.rfind(' ', 0, 500) ] }}...</p>
+                <a href="{{ url_for('news.view', id=post.id, previous=page) }}">Read More</a>
+            {% else %}
+            <p>{{ post.body }}</p>
+            {% endif %}
+            <h2>Post created on {{ post.created }} </h2>
+        </div>
+    {% endfor %}
+        {% if (get_count() / entries)|round(0, 'ceil') | int > 1 %}
+        <div class="pages">
+    <button {% if page == 1 %} disabled {% else %} onclick="window.location.href='{{ url_for('news.index', page=page-1) }}'" {% endif %}><</button>
+        {% for i in get_pages(pages) %}
+            {% if i == page %}
+                <p>{{page}}</p>
+            {% elif i > 0 %}
+                <a href="{{ url_for('news.index', page=i) }}">{{i}}</a>
+            {% endif %}
+        {% endfor %}
+    <button {% if page == (get_count() / entries)|round(0, 'ceil') | int %} disabled {% else %} onclick="window.location.href='{{ url_for('news.index', page=page+1) }}'" {% endif %}>></button>
+        </div>
+        {% endif %}
+        {% endif %}
+    </div>
+
+<div class="links">
+    <div class="linkHeader">
+    <form method="get">
+        <div id="newsDropdownsTagless"></div>
+        <button type="submit">Search</button>
+        {% if filtered %}
+            <button type="button" onclick="window.location.href='{{ url_for('news.index') }}'">Back</button>
+        {% endif %}
+    </form>
+    {% if check_permissions('NEWS') %}
+        <button onclick="window.location.href='{{ url_for('news.add') }}';">Add Post</button>
+    {% endif %}
+    </div>
+    
+    <div id="bulletinList"></div>
+</div>
+
+</div>
+
+{% endblock %}

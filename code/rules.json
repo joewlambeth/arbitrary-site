@@ -1,0 +1,15 @@
+{
+    "user": {
+        "username": {
+            ".{5,20}": "Usernames must be between 5 and 20 characters",
+            "^\\w+$": "Usernames can only have numbers and letters"
+        },
+        "password": {
+            ".{8,20}": "Passwords must be between 8 and 20 characters",
+            "[A-Z]": "Passwords must have at least 1 uppercase letter",
+            "[a-z]": "Passwords must have at least 1 lowercase letter",
+            "[0-9]": "Passwords must have at least 1 number",
+            "^\\S+$": "Passwords cannot have whitespace"
+        }
+    }   
+}

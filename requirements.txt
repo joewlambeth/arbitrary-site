@@ -1,0 +1,9 @@
+stdiomask
+flask
+google-cloud-storage
+gunicorn
+sqlalchemy
+pylint-flask
+pymysql
+pytest
+Pillow

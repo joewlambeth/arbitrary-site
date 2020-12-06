@@ -1,0 +1,12 @@
+{% extends "TEMPLATE.j2" %}
+
+{% block title %} {% block header %} Error {% endblock %} {% endblock %}
+
+{% block content %}
+<div class="container">
+<h1>Error {{ error }}</h1>
+<div class="paragraph">
+    Please continue to the home page.
+</div>
+</div>
+{% endblock %}

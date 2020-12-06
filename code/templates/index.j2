@@ -1,0 +1,38 @@
+{% extends 'TEMPLATE.j2' %}
+
+{% block title %}{% block header %}ARBITRARY WEBSITE{% endblock %}{% endblock %}
+
+{% block content_header %} Come see us! {% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+	<div class="column">
+		<h3>Systems Programming</h3>
+		<h3>6:00 p.m</h3> </br>
+		<h4>Dr. Johnson</h4>
+
+	</div>
+	<div class="column">
+		<h3>Web Development</h3>
+		<h3>9:30 a.m </h3> </br>
+		<h4>Dr. Peters</h4>
+		<h4>TA: John Johnson</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="desc">
+		<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur id tincidunt ante, a maximus nisl. Proin ornare placerat erat et accumsan. 
+		Nunc ornare dolor suscipit, sodales tortor id, laoreet lectus. Fusce finibus massa ex, nec lobortis nisi iaculis non. Donec vel tempus erat.
+		Sed nec libero in dui aliquam dapibus. Nam ligula ipsum, accumsan lacinia luctus ut, accumsan a nibh. Sed neque lectus, tristique non gravida ut, viverra a nisl. 
+		Cras dolor nibh, vulputate eu eros eu, scelerisque semper tellus. Pellentesque non consequat libero. Proin facilisis metus ac quam malesuada fermentum. 
+		In commodo turpis ac tristique lobortis. Vestibulum ac felis vitae turpis lacinia finibus a eu dolor. Etiam fermentum enim sit amet mauris pulvinar aliquet. 
+		Vestibulum non magna ornare, ullamcorper lectus vel, tincidunt sem. </p>
+	</div>
+	<div class="image">
+		<img src="{{ url_for("static", filename="main.jpg")}}"/>
+	</div>
+</div>
+</div>
+{% endblock %}
+	

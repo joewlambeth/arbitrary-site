@@ -1,0 +1,25 @@
+{% extends 'TEMPLATE.j2' %}
+
+{% block title %} {{ post['title'] }} - News {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="post">
+            <div class="postHeader">
+                <h1 id="{{ post['id'] }}">{{ post['title'] }}</h1>
+                <div class="postMeta">
+                    {% if post.tag|length > 0 %} <h2 class="tag">{{ post.tag[0].tag }}</h2> {% elif post.group|length > 0 %}<h2 class="{{ 'group' if post.group[0].grouptype == GroupEnum.groups else 'connect' }}">{{ post.group[0].title }}</h2>{% endif %}
+                    {% if check_permissions("NEWS") %}
+                        <button onclick="window.location.href='{{ url_for('news.edit', id=post['id']) }}'">Edit</button>
+                    {% endif %}
+                </div>
+                <br/>
+            </div>
+
+            <p>{{ post['body'] }}</p>
+        <a href="{{ url_for('news.index', page=previous) }}#{{ post['id'] }}"><< Go Back</a>
+            <h2>Post created on {{ post['created'] }} </h2>
+
+        </div>
+</div>
+{% endblock %}

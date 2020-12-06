@@ -1,0 +1,22 @@
+# Arbitrary Back/Front end website
+
+This was an abandoned project that now only serves as a portfolio piece. Created using Flask and React frameworks.
+
+Features:
+* User/password Authentication/Authorization for different functionalities
+* Blog posting with tags and categories
+* Gallery with (broken) thumbnail generation
+* PDF Uploading via "Bulletins"
+* Arbitrary Page creation using Admin Page, Connect, and Groups
+* CSRF protection
+
+
+# Setup
+
+1. Create a Python 3 virtual environment using `python3 -m venv ./venv`, and activate it
+2. Run `pip install -r requirements.txt`
+3. Download a key from the Google Cloud service account `jdoe`
+4. Create a script in `./local` that runs the Cloud SQL Proxy that uses the above JSON key and the correct database instance.
+5. You'll also need an installation of MySQL and its Python adapter.
+6. Run `npm install`
+7. Run `npm run build` and `flask run` to run the application

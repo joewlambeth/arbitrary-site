@@ -1,0 +1,49 @@
+{% extends 'TEMPLATE.j2' %}
+
+{% block title %} {% block header %} Connect {% endblock %} {% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if groups|length > 0 %}
+    {% for group in groups %}
+        <div class="post">
+            <div class="postHeader">
+                <div class="postMeta">
+                    <h1 id="{{ group.id }}"><a href="{{ url_for('connect.view_' + group.grouptype.name, id=group.id, previous=page) }}">{{ group.title }}</a></h1>
+                </div>
+                <br/>
+            </div>
+
+            {% if group.description|length > 100 %}
+                <p>{{ group.description[: group.description.rfind(' ', 0, 100) ] }}...</p>
+                <a href="{{ url_for('connect.view_' + group.grouptype.name, id=group.id, previous=page) }}">Read More</a>
+            {% else %}
+            <p>{{ group.description }}</p>
+            {% endif %}
+        </div>
+    {% endfor %}
+        {% if (get_count() / entries)|round(0, 'ceil') | int > 1 %}
+        <div class="pages">
+    <button {% if page == 1 %} disabled {% else %} onclick="window.location.href='{{ url_for('connect.index_' + group.grouptype.name, page=page-1) }}'" {% endif %}><</button>
+        {% for i in get_pages(pages) %}
+            {% if i == page %}
+                <p>{{page}}</p>
+            {% elif i > 0 %}
+                <a href="{{ url_for('connect.index_' + group.grouptype.name, page=i) }}">{{i}}</a>
+            {% endif %}
+        {% endfor %}
+    <button {% if page == (get_count() / entries)|round(0, 'ceil') | int %} disabled {% else %} onclick="window.location.href='{{ url_for('connect.index_' + group.grouptype.name, page=page+1) }}'" {% endif %}>></button>
+        </div>
+        {% endif %}
+    {% else %}
+        <div class="post">
+            <div class="postHeader">
+                <div class="postMeta">
+                    <h1><a>No available groups</a></h1>
+                </div>
+            </div>
+            <p>Please check again later!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

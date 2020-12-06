@@ -1,0 +1,23 @@
+{% extends "TEMPLATE.j2" %}
+
+{% block title %} Add News Post {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{% if post %} Edit {% else %} Add {% endif %} Post</h1>
+    <form method="post">
+        <input hidden readonly name="token" value="{{ token }}" />
+        <div id="newsDropdowns"></div>
+        <input name="title" placeholder="Title" type="text" {% if post %} value="{{ post['title'] }}" {% endif %}/>
+        <textarea name="body" placeholder="Body" rows="5" cols="30">{% if post %}{{ post['body'] }}{% endif %}</textarea>
+        <button type="submit">Post</button>
+
+    </form>
+    {% if post %}
+        <form action="{{ url_for('news.delete', id=post['id'])}}" method="post">
+        <input hidden readonly name="token" value="{{ token }}" />
+        <button type="submit">Delete</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
